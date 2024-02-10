@@ -10,7 +10,8 @@ import {
     Icon,
     Address,
 } from './restaurant-info-card.styles';
-
+import { View } from "react-native";
+import { Favourite } from '../../../components/favourites/favourite.component';
 export const RestaurantInfoCardComponent = ({ restaurant = {} }) => {
     const {
         name = 'Some Restaurant',
@@ -22,17 +23,15 @@ export const RestaurantInfoCardComponent = ({ restaurant = {} }) => {
         isOpenNow = true,
         rating = 4,
         isClosedTemporarily = true,
+        placeId,
     } = restaurant;
 
     return (
-        <RestaurantCard>
-            <RestaurantCardCover
-                elevation={5}
-                key={name}
-                source={{
-                    uri: photos[0],
-                }}
-            />
+        <RestaurantCard elevation={5}>
+            <View>
+                <Favourite restaurant={restaurant} />
+                <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+            </View>
             <Info>
                 <Text variant="label">{name}</Text>
                 <Section>
